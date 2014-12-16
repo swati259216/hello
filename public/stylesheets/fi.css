@@ -1,0 +1,36 @@
+.full{
+	margin-left: 40px;
+	padding-top: 20px;
+}
+.label1{
+	color:#428bca;
+}
+
+.head{
+	color:#428bca;
+	margin: 20px;
+}
+.firstname{
+	margin:20px;
+}
+.lastname{
+	margin:20px;
+}
+.emailenter{
+	margin:20px;
+	
+	}
+.passwordenter{
+	margin:20px;
+
+}
+.confirmpasswordenter{
+	margin:20px;
+}
+#button{
+	margin:20px;
+}
+.message{
+	float: right;
+	margin-right: 50px;
+}

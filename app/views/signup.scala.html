@@ -1,0 +1,84 @@
+@(signupForm: Form[Users])
+
+@import helper._
+
+@main("Sign UP") {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Real Time Validation</title>
+
+<style type="text/css">
+    .bs-example{
+        left-margin: 0px;
+        margin-top: 50px;
+        margin-right: 100px;
+    }
+</style>
+</head>
+<body ng-app = "Validation" ng-controller = "Submit as submit">
+
+@if(flash.containsKey("success")){
+<div class="alert alert-success">
+@flash.get("success")
+<a href="@routes.Application.signin()" class="message">Signin</a>
+</div>
+}
+@if(flash.containsKey("error")){
+<div class="alert alert-success">
+@flash.get("error")
+</div>
+}
+
+<div class="full" >
+    <h2 class="head">SignUp!</h2>
+    <form method = "post"  action="@routes.Application.save()"  novalidate name="form">
+
+
+
+        <div class="firstname">
+            <label class="label1" >Firstname</label>
+            <div class="col">
+                <input type="text" id="inputSuccess" class="form-control"  name="firstName" onkeyup="validate(this)" ng-model="submit.form.firstname">
+                 <label id = "labeluser"></label>
+            </div>
+        </div>
+        
+        <div class="lastname">
+            <label class="label1" >Lastname</label>
+            <div class="col">
+                <input type="text" id="inputSuccess1" class="form-control" value=signupForm.lastName  ng-model="submit.form.lastname" name="lastName"onkeyup="validate(this)"/>
+                <label id='labeluser0'></label>
+            </div>
+        </div>
+        <div class="emailenter">
+            <label class="label1" for="inputError">Email</label>
+            <div class="col">
+            <input type="email" id="inputEmail" class="form-control" name="emailId"  ng-model="submit.form.emailId"  onkeyup="validateEmail()">
+            <label id='labeluser1'></label>
+            </div>
+        </div>
+        <div class="passwordenter">
+            <label class="label1" for="inputWarning">Password</label>
+            <div class="col">
+                <input type="password" id="inputPassword" class="form-control"  ng-model="submit.form.password" name="password"  onkeyup="validatePassword()">
+                <label id='labeluser2'></label>
+            </div>
+        </div>
+         <div class="confirmpasswordenter">
+            <label class="label1" for="inputWarning">Confirm Password</label>
+            <div class="col">
+                <input type="password" id="inputcf" class="form-control"  ng-model="submit.form.conf_password" name="confirm_password" onkeyup="validateCPassword()">
+                 <label id='labeluser3'></label>
+            </div>
+        </div> 
+         <button type="submit" id="button" class="btn btn-primary" ng-disabled="!submit.submission()">SignUp</button>  <a href="@routes.Application.signin()">Already a Member?</a>
+    </form>
+</div>
+
+
+</body>
+
+</html>                            		
+}

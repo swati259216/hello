@@ -1,0 +1,5 @@
+Number of pending messages : remains same when you shutdown the activemq server .. However all the other details for example, message enqueued and messages dequeued are for a session and turns to zero when you start a new session.
+
+So basically even if you close the activemq after sending messages then also you will recieve after restarting.
+
+http://activemq.apache.org/amq-message-store.html: Mesaage Store

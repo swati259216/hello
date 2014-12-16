@@ -1,0 +1,329 @@
+@(products: List[Notes])
+
+@import helper._
+
+@main("GoogleKeep") {
+
+   <!DOCTYPE html>
+<html >
+<head>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+
+
+
+
+</head>
+<body ng-app="GoogleKeep" ng-controller="Notes as notes" >
+     
+     <div id ="rem"><div id="rem11"><div id="rem1">&#9776; Reminders</div></div>
+                      <div  id = "rem2">
+                      <div ng-repeat = "not in notes.note" ng-controller = "Helpstore as help" ng-init="help.init(not)">
+          <div id="box" ng-click = "help.value(not)" ng-hide="not.timet == '' || not.reminder == '' || not.isTrash"> 
+        {{not.memo}}
+        <div id="bottom" ng-hide="not.timet == '' || not.reminder == '' "> --------------------------------------------
+        </br> <span class="glyphicon glyphicon-time"></span> <i>Reminder at {{not.timet}} on {{not.reminder}} </i></div>
+     </div>    
+     </div>
+    </div>
+      </div>
+      <div id ="arch"><div id="arch11"><div id="arch1">&#9776; Archive</div></div>
+                      <div id = "arch2">
+                      <div ng-repeat = "not in notes.note" ng-controller = "Helpstore as help" ng-init="help.init(not)">
+    <div id="box" ng-click = "help.value(not)" ng-hide="!not.isArchive || not.isTrash"> 
+        {{not.memo}}
+        <div id="bottom" ng-hide="not.timet == '' || not.reminder == '' "> --------------------------------------------</br> <span class="glyphicon glyphicon-time"></span> <i>Reminder at {{not.timet}} on {{not.reminder}} </i></div>
+     </div>    
+     </div>
+                      </div>
+
+                      </div>
+      </div>
+     <div id ="trash"><div id="trash11"><div id="trash1">&#9776; Trash</div></div>
+                      <div id = "trash2">
+
+
+
+    <div ng-repeat = "not in notes.note" ng-controller = "Helpstore as help" ng-init="help.init(not)">
+    <div id="box" ng-click = "help.value(not)" ng-hide="!not.isTrash"> 
+        {{not.memo}}
+        <div id="bottom" ng-hide="not.timet == '' || not.reminder == '' "> --------------------------------------------</br> <span class="glyphicon glyphicon-time"></span> <i>Reminder at {{not.timet}} on {{not.reminder}} </i></div>
+     </div>    
+     </div>
+                      </div>
+
+
+                      </div>
+      </div>
+ 
+  
+     <div id="slide">
+      
+            <div class="slide2" ><span class="glyphicon glyphicon-star"></span>&nbsp;   Notes</div>
+            <div class="slide1"><span class="glyphicon glyphicon-bell"></span>&nbsp;    Reminder</div>
+            <div class="slide3"><span class="glyphicon glyphicon-envelope"></span>&nbsp;    Archive</div>
+            <div class="slide4"><span class="glyphicon glyphicon-trash"></span>&nbsp;   Trash</div>
+      
+
+      </div>
+    <div id="book">
+           <div id="first"> <div id="first1">&#9776; Notes</div><div id="logout"><a href="@routes.Application.logout()">LogOut</a></div>
+           </div>
+           
+  <div   id= "second" ng-click="notes.do()">
+            
+         
+    <form ng-controller= "NoteStore as store" ng-submit="store.addSubmit(notes.note)" id="form">
+      <input type="text" ng-model="store.name.memo" id="second1" placeholder="Add Note"/>
+      <input type="submit"/>
+    </form>
+
+   
+<div ng-repeat = "not in notes.note" ng-controller = "Helpstore as help" ng-init="help.init(not)">
+    <div id="box" ng-click = "help.value(not)" ng-hide="not.isArchive || not.isTrash"> 
+        {{not.memo}}
+        <div id="bottom" ng-hide="not.timet == '' || not.reminder == '' "> --------------------------------------------</br> <span class="glyphicon glyphicon-time"></span> <i>Reminder at {{not.timet}} on {{not.reminder}} </i></div>
+     </div> 
+    <div  id="pop" >
+
+        <textarea  id="pop1"  ></textarea>
+        </br>
+        <div id = "label" ></div>
+        <div id="pop3"> 
+          <span id="test" class="glyphicon glyphicon-bell" ng-click="help.insert()"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="glyphicon glyphicon-envelope" ng-click="help.archive()"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="glyphicon glyphicon-trash" ng-click="help.trash()"></span>
+          <input type = "submit" value="Done" style = "float:right"id="pop2" ng-click="help.change()">
+
+        </div>
+                  
+        <div id="pop4">
+        Reminder</br></br>
+        <input type="date" id="remin" >&nbsp;&nbsp;&nbsp;&nbsp; at &nbsp;&nbsp;&nbsp;&nbsp; <input id="time" type="time"> 
+        <input type="submit" value="Remind Me" style = "float:right" ng-click="help.insert1()">
+        </div>
+
+    </div>
+            
+    
+               
+  </div>
+
+          
+ </div> 
+</div>
+     
+ <script>
+
+
+var app = angular.module("GoogleKeep", []);
+  var slips =  slips=[{memo:"Getting started",reminder:"",timet:"",isArchive:false,isTrash:false
+           },{memo:"Welcome",reminder:"",timet:"",isArchive:false,isTrash:false}
+          ];
+app.controller("Notes", function($scope) {
+    this.note = slips;
+    this.do=function(){
+      $("#slide").hide();
+    }
+    
+  
+    
+});
+app.controller("NoteStore", function() {
+    this.name = {memo:null,reminder:"",timet:"",isArchive:false,isTrash:false
+                 };
+    this.addSubmit=function(product){
+      product.push(this.name);
+      this.name = {memo:null,reminder:"",timet:"",isArchive:false,isTrash:false};
+    }
+});
+app.controller("Helpstore", function() {
+
+    this.init = function(name){
+       var i=null;
+      var animal = null;
+      this.title =name;
+      
+    }
+    this.value = function(na){
+      
+      $("#pop").show(); 
+      animal = na;
+      $("#pop1").val(na);
+       
+    }
+    this.change=function(){
+      
+      
+      $("#pop").hide();
+            
+    }
+    this.insert=function(){
+    $("#pop4").show(); 
+    $("#remin").val(slips[i].reminder);
+    $("#time").val(slips[i].timet);
+    }
+    this.insert1=function(){
+       slips[i].reminder = $("#remin").val();
+       slips[i].timet = $("#time").val();
+       $("#pop4").hide(); 
+    }
+    this.archive=function(){
+       slips[i].isArchive=true; 
+       $("#pop").hide(); 
+    }
+     this.trash=function(){
+       slips[i].isTrash=true; 
+       $("#pop").hide(); 
+    }
+
+});
+
+
+</script>      
+<script type="text/javascript">
+$(function(){
+     
+     $("#first1").hover(
+      function(){$("#first1").css("color","black");
+                   $("#first1").addClass("cursor");
+                   },
+      function(){$("#first1").css("color","gray");}
+
+      );
+      $("#first1").click(function(evt){
+                    evt.preventDefault();
+                    $("#slide").slideToggle();
+                   });
+     $("#rem1").hover(
+      function(){$("#rem1").css("color","black");
+                   $("#rem1").addClass("cursor");
+                   },
+      function(){$("#rem1").css("color","gray");}
+
+      );
+      $("#rem1").click(function(evt){
+                    evt.preventDefault();
+                    $("#slide").slideToggle();
+                   });
+      $("#rem2").click(function(evt){
+                    evt.preventDefault();
+                    $("#slide").hide();
+                   });
+     $("#arch1").hover(
+      function(){$("#arch1").css("color","black");
+                   $("#arch1").addClass("cursor");
+                   },
+      function(){$("#arch1").css("color","gray");}
+
+      );
+     $("#arch1").click(function(evt){
+                    evt.preventDefault();
+                    $("#slide").slideToggle();
+                   });
+     $("#arch2").click(function(evt){
+                    evt.preventDefault();
+                    $("#slide").hide();
+                   });
+     $("#trash1").hover(
+      function(){$("#trash1").css("color","black");
+                   $("#trash1").addClass("cursor");
+                   },
+      function(){$("#trash1").css("color","gray");}
+
+      );
+     
+       $("#trash1").click(function(evt){
+                    evt.preventDefault();
+                    $("#slide").slideToggle();
+                    $(".slide3").click(
+                     function(){$("#arch").show();
+                  $("#slide").hide();}
+          );
+                   });
+       $("#trash2").click(function(evt){
+                    evt.preventDefault();
+                    $("#slide").hide();
+                   });
+     $(".slide1").hover(
+      function(){  $(".slide1").css("background-color","rgb(224,224,224)");
+                   $(".slide3").css("background-color","white");
+                   $(".slide4").css("background-color","white");
+                  
+                  });
+     $(".slide3").hover(
+      function(){  $(".slide3").css("background-color","rgb(224,224,224)");
+                    $(".slide1").css("background-color","white");
+                   $(".slide4").css("background-color","white");
+                   });
+     $(".slide4").hover(
+      function(){  $(".slide4").css("background-color","rgb(224,224,224)");
+                   $(".slide1").css("background-color","white");
+                   $(".slide3").css("background-color","white");
+                   });
+       $("#pop3").hover(
+      function(){$("#pop3").addClass("cursor");
+                   }
+
+      );
+       $(".slide1").click(
+      function(){$("#rem").show();
+                 $("#arch").hide();
+                 $("#trash").hide();
+                  $("#slide").hide();}
+          );
+        $(".slide3").click(
+      function(){$("#arch").show();
+                  $("#rem").hide();
+                  $("#trash").hide();
+                  $("#slide").hide();}
+          );
+         $(".slide4").click(
+      function(){$("#trash").show();
+                  $("#rem").hide();
+                 $("#arch").hide();
+                  $("#slide").hide();}
+          );
+        $(".slide2").click(
+      function(){$("#rem").hide();
+                 $("#arch").hide();
+                 $("#trash").hide();
+                  $("#slide").hide();}
+          );
+    
+    
+     var myFunction = function() { 
+
+
+     $.each(slips,function(key,value){
+       var te = value.timet;
+      var hrs = te.split(':')[0];
+      var mins = te.split(':')[1];
+      var date = new Date();
+      var remDate=new Date(value.reminder);
+      
+      if((remDate.getFullYear()==date.getFullYear())&&(remDate.getMonth()==date.getMonth())&&(remDate.getDate()==date.getDate())&&(date.getHours()==hrs)&&(date.getMinutes()==(mins-10)))
+      {
+         alert("You have reminder at " + value.timet);
+        
+      }
+
+    });
+
+
+
+
+
+     };
+setInterval(myFunction, 60000);
+});    
+
+
+
+
+</script>    
+    
+</body>
+</html>
+
+}

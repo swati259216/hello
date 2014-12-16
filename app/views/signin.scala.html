@@ -1,0 +1,37 @@
+@(signinForm : Form[SignIn])
+@main("Sign In") {
+<body>   
+    <div class="full" >
+@if(flash.containsKey("error")){
+<div class="alert alert-success">
+@flash.get("error")
+</div>
+}
+@if(flash.containsKey("success")){
+<div class="alert alert-success">
+@flash.get("success")
+</div>
+}
+	    <form method="post" action="@routes.Application.authenticate()">
+            <h2 class="head">SignIn</h2>
+       <div class="emailenter">
+            <label class="label" for="inputError">Email</label>
+            <div class="col">
+            <input type="email" id="inputEmail" class="form-control" name="emailId"  value="@signinForm("emailId").value" placeholder="Email" >
+            <label id='labeluser1'></label>
+            </div>
+        </div>
+        <div class="passwordenter">
+            <label class="label" for="inputWarning">Password</label>
+            <div class="col">
+                <input type="password" id="inputPassword" class="form-control"  name="password" placeholder="Password" >
+                <label id='labeluser2'></label>
+            </div>
+        </div>
+    
+     <button type="submit" id ="button" class="btn btn-primary">Login</button> <a href="@routes.Application.up()">New User?</a>
+</form>
+</div>
+</body>
+</html>                            		
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/ruby_http_parser" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="ruby_http_parser" level="project" />
+    <orderEntry type="library" name="jruby-complete-1.7.11" level="project" />
+    <orderEntry type="library" name="ruby_http_parser1" level="project" />
+    <orderEntry type="library" name="primitives" level="project" />
+    <orderEntry type="library" name="primitives1" level="project" />
+  </component>
+</module>
+
