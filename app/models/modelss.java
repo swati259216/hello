@@ -7,6 +7,7 @@ public class modelss {
   
   public int runs =78;
   public int players= 11;
-  public int icecreams=9;
+//  public int icecreams=9;
+
   
 }
