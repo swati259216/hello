@@ -6,4 +6,5 @@ package controllers;
 public class hello2 {
 
     private String h ="hello , there";
+    private int trials=3;
 }
