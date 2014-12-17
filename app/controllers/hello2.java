@@ -1,5 +1,9 @@
 package controllers;
 
+import play.Logger;
+import play.mvc.Result;
+import views.html.signup;
+
 /**
  * Created by swati on 16/12/14.
  */
@@ -34,4 +38,16 @@ public class hello2 {
         this.h = h;
         this.trials = trials;
     }
+
+    public static Result up() {
+        String remote = request().remoteAddress();
+        Logger.info("Signup" + "," + remote);
+        if (session().get("emailwId") != null) {
+            return redirect(routes.Application.index());
+
+
+        }
+        return ok(signup.render(signupForm));
+    }
+
 }
