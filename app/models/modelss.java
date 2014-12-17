@@ -13,5 +13,9 @@ public class modelss {
 
       runs =8;
   }
-  
+
+//    public void master(){
+//        String smile= "smile";
+//    }
+
 }
