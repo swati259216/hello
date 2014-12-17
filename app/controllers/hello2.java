@@ -23,5 +23,10 @@ public class hello2 {
 
     public void setTrials(int trials) {
         this.trials = trials;
+
+    }
+
+    public void gt(){
+        String set ="how";
     }
 }
