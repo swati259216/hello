@@ -23,6 +23,7 @@ import views.html.signin;
 
 import java.util.List;
 
+import static play.mvc.Results.internalServerError;
 import static play.mvc.Results.notFound;
 
 /**
@@ -74,5 +75,10 @@ public class hello2 {
         return redirect(routes.Application.up());
     }
 
+    public F.Promise<SimpleResult> onError(Http.RequestHeader request, Throwable t) {
+        return F.Promise.<SimpleResult>pure(internalServerError(
+                views.html.errorPage.render(t)
+        ));
+    }
 
 }
