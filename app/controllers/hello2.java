@@ -54,11 +54,4 @@ public class hello2 {
 
     }
 
-    public static Result logout(){
-        session().clear();
-        flash("success","You have been logged out!");
-        return redirect(routes.Application.signin());
-    }
-
-
 }
