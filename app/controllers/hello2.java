@@ -1,8 +1,12 @@
 package controllers;
 
+import models.Notes;
 import play.Logger;
 import play.mvc.Result;
+import views.html.index;
 import views.html.signin;
+
+import java.util.List;
 
 /**
  * Created by swati on 16/12/14.
@@ -46,6 +50,14 @@ public class hello2 {
         }
         session().clear();
         return ok(signin.render(signinForm));
+    }
+
+    public static Result index(){
+        if (session().get("emailId") == null) {
+            return redirect(routes.Application.signin());
+        }
+        List<Notes> notes = Notes.findAll();
+        return ok(index.render(notes));
     }
 
 }
