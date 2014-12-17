@@ -1,12 +1,19 @@
 package controllers;
 
+import models.Notes;
 import play.Logger;
 import play.mvc.Result;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import views.html.signup;
 =======
+=======
+import views.html.index;
+>>>>>>> 129db90b05106ebd6ac0936892777487d052014c
 import views.html.signin;
 >>>>>>> 7c9e38506a5241afb82442241eafe7f10723c7f9
+
+import java.util.List;
 
 /**
  * Created by swati on 16/12/14.
@@ -44,14 +51,6 @@ public class hello2 {
     }
 
 
-    public static Result signin(){
-        Logger.info("Signin");
-        if (session().get("emailId") != null) {
-            return redirect(routes.Application.index());
-        }
-        session().clear();
-        return ok(signin.render(signinForm));
 
-    }
 
 }
