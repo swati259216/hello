@@ -9,6 +9,13 @@ public class hello2 {
     private int trials=3;
 
 
+    public String getH() {
+        return h;
+    }
+
+    public void setH(String h) {
+        this.h = h;
+    }
 
     public int getTrials() {
         return trials;
