@@ -2,7 +2,11 @@ package controllers;
 
 import play.Logger;
 import play.mvc.Result;
+<<<<<<< HEAD
 import views.html.signup;
+=======
+import views.html.signin;
+>>>>>>> 7c9e38506a5241afb82442241eafe7f10723c7f9
 
 /**
  * Created by swati on 16/12/14.
@@ -39,15 +43,15 @@ public class hello2 {
         this.trials = trials;
     }
 
-    public static Result up() {
-        String remote = request().remoteAddress();
-        Logger.info("Signup" + "," + remote);
-        if (session().get("emailwId") != null) {
+
+    public static Result signin(){
+        Logger.info("Signin");
+        if (session().get("emailId") != null) {
             return redirect(routes.Application.index());
-
-
         }
-        return ok(signup.render(signupForm));
+        session().clear();
+        return ok(signin.render(signinForm));
+
     }
 
 }
