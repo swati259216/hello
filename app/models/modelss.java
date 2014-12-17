@@ -25,9 +25,16 @@ public class modelss {
 
     }
 
-    public void getit(){
+
+    public void getit() {
 
         String hi = "huth";
+    }
+
+    public void get(){
+
+        runs =87;
+
     }
 
 }
