@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Notes;
+import models.SignIn;
 import models.Users;
 import play.Logger;
 <<<<<<< HEAD
@@ -72,6 +73,26 @@ public class hello2 {
         user.save();
         flash("success", "Your account has been created!");
         return redirect(routes.Application.up());
+    }
+
+    public static Result authenticate() {
+        Form<SignIn> boundForm = signinForm.bindFromRequest();
+        if(boundForm.hasErrors()){
+            flash("error", "You have entered the wrong details");
+            return badRequest(signin.render(boundForm));
+        }
+        SignIn user = boundForm.get();
+        Users user1= Users.authenticate(user);
+        if(user1 == null){
+            flash("error", "You have entered the wrong details");
+            return badRequest(signin.render(boundForm));
+        }
+        else{
+            session().clear();
+            session("emailId", boundForm.get().emailId);
+
+            return redirect(routes.Application.index());
+        }
     }
 
 
