@@ -8,5 +8,9 @@ public class modelss {
   public int runs =78;
   public int players= 11;
   public int tress=67;
+
+  public void getCount(){
+
+  }
   
 }
