@@ -65,6 +65,9 @@ public class hello2 {
     }
 
 
+    public void truee(){
+        
+    }
     public static Result save(){
         Form<Users> boundForm = signupForm.bindFromRequest();
 
