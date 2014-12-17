@@ -25,4 +25,9 @@ public class modelss {
 
     }
 
+    public void get(){
+
+        runs =87;
+    }
+
 }
