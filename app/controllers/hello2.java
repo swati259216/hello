@@ -17,4 +17,9 @@ public class hello2 {
     public void setTrials(int trials) {
         this.trials = trials;
     }
+
+    public hello2(String h, int trials) {
+        this.h = h;
+        this.trials = trials;
+    }
 }
