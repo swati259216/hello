@@ -1,9 +1,14 @@
 package controllers;
 
 import models.Notes;
+import models.Users;
 import play.Logger;
+<<<<<<< HEAD
 import play.libs.F;
 import play.mvc.Http;
+=======
+import play.data.Form;
+>>>>>>> tile
 import play.mvc.Result;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -55,11 +60,8 @@ public class hello2 {
         this.trials = trials;
     }
 
-    public F.Promise<SimpleResult> onHandlerNotFound(Http.RequestHeader request) {
-        return F.Promise.<SimpleResult>pure(notFound(
-                views.html.notFoundPage.render(request.uri())
-        ));
-    }
+
+ 
 
 
 }
