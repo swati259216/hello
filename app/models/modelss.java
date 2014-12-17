@@ -25,4 +25,9 @@ public class modelss {
 
     }
 
+    public void getit(){
+
+        String hi = "huth";
+    }
+
 }
