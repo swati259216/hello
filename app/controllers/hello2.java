@@ -1,7 +1,9 @@
 package controllers;
 
 import models.Notes;
+import models.Users;
 import play.Logger;
+import play.data.Form;
 import play.mvc.Result;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -50,7 +52,18 @@ public class hello2 {
         this.trials = trials;
     }
 
+    public static Result save(){
+        Form<Users> boundForm = signupForm.bindFromRequest();
 
+        if(boundForm.hasErrors()){
+            flash("error", "You have entered the wrong details");
+            return ok(signup.render(boundForm));
+        }
+        Users user = boundForm.get();
+        user.save();
+        flash("success", "Your account has been created!");
+        return redirect(routes.Application.up());
+    }
 
 
 }
