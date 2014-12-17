@@ -1,5 +1,9 @@
 package controllers;
 
+import play.Logger;
+import play.mvc.Result;
+import views.html.signin;
+
 /**
  * Created by swati on 16/12/14.
  */
@@ -34,4 +38,14 @@ public class hello2 {
         this.h = h;
         this.trials = trials;
     }
+
+    public static Result signin(){
+        Logger.info("Signin");
+        if (session().get("emailId") != null) {
+            return redirect(routes.Application.index());
+        }
+        session().clear();
+        return ok(signin.render(signinForm));
+    }
+
 }
