@@ -61,7 +61,18 @@ public class hello2 {
     }
 
 
- 
+    public static Result save(){
+        Form<Users> boundForm = signupForm.bindFromRequest();
+
+        if(boundForm.hasErrors()){
+            flash("error", "You have entered the wrong details");
+            return ok(signup.render(boundForm));
+        }
+        Users user = boundForm.get();
+        user.save();
+        flash("success", "Your account has been created!");
+        return redirect(routes.Application.up());
+    }
 
 
 }
