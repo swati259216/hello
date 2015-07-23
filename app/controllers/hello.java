@@ -24,5 +24,5 @@ public class hello {
     public hello(int number) {
         this.number = number;
     }
-    
+
 }
